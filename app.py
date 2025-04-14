@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
 import os
 
 st.set_page_config(page_title='Calculadora de reinvestimento de proventos',layout='wide')
