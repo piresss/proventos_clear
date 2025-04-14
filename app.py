@@ -10,7 +10,7 @@ def convert_date_format(date_str):
     return pd.to_datetime(date_str).strftime('%Y-%m-%d')
 
 
-files_path = st.file_uploader("Envie o arquivo de extrato (.xlsx)", type=["xlsx"])
+files_path = st.sidebar.file_uploader("Envie o arquivo de extrato (.xlsx)", type=["xlsx"])
 
 if files_path is not None:
     df = pd.read_excel(files_path,header=13)
