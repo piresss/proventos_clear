@@ -9,8 +9,10 @@ st.set_page_config(page_title='Calculadora de reinvestimento de proventos',layou
 def convert_date_format(date_str):
     return pd.to_datetime(date_str).strftime('%Y-%m-%d')
 
-files_path = st.sidebar.file_uploader('Arquivo de extrato')
-if files_path not None:
+
+files_path = st.file_uploader("Envie o arquivo de extrato (.xlsx)", type=["xlsx"])
+
+if files_path is not None:
     df = pd.read_excel(files_path,header=13)
     df = df.iloc[0:-19]
     
