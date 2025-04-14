@@ -6,10 +6,31 @@ import os
 
 st.set_page_config(page_title='Calculadora de reinvestimento de proventos',layout='wide')
 
+
+def converter_caminho(caminho_windows):
+    """
+    Converte um caminho de rede no estilo Windows para o formato Linux.
+
+    Parâmetros:
+        caminho_windows (str): Caminho de rede no estilo Windows.
+    
+    Retorna:
+        str: Caminho no formato Linux.
+    """
+    # Substitui as barras invertidas (\) por barras normais (/)
+    caminho_linux = caminho_windows.replace("\\", "/")
+    
+    # Remove "C:" ou outro drive para adequar ao Linux
+    if ":" in caminho_linux:
+        drive, resto_caminho = caminho_linux.split(":", 1)
+        caminho_linux = f"/mnt/{drive.lower()}{resto_caminho}"
+
+    return caminho_linux
+
 def convert_date_format(date_str):
     return pd.to_datetime(date_str).strftime('%Y-%m-%d')
 
-files_path = st.sidebar.text_input('Pasta com extratos')
+files_path =  converter_caminho(st.sidebar.text_input('Pasta com extratos'))
 
 # Lista para armazenar os dataframes de cada arquivo
 dataframes = []
