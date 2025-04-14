@@ -10,7 +10,7 @@ def convert_date_format(date_str):
     return pd.to_datetime(date_str).strftime('%Y-%m-%d')
 
 files_path = st.sidebar.file_uploader('Arquivo de extrato')
-if files_path:
+if files_path not None:
     df = pd.read_excel(files_path,header=13)
     df = df.iloc[0:-19]
     
